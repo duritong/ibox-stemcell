@@ -19,4 +19,8 @@ setup things further.
     # be sure to not use ssh-agent
     unset SSH_AUTH_SOCK
     veewee kvm build ibox-stemcell
+    # if it suceeded you can connect to it using the root password: vagrant
+    # shutdown the vm afterwards to export it
+    veewee kvm export 'ibox-stemcell'
 
+The exported image can then be shared.
