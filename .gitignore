@@ -1,2 +1,5 @@
 iso/*
+packer_cache/*
+builds/
+ibox-*
 Gemfile.lock

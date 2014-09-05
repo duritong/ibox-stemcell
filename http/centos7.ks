@@ -17,10 +17,7 @@ bootloader --location=mbr
 firstboot --disable
 
 zerombr
-clearpart --initlabel --all
-part /boot --fstype ext4 --size=512 --ondrive=vda
-part pv.01 --size=1 --grow --ondrive=vda
-
+%include /tmp/kspre.cfg
 volgroup vg-ibox pv.01
 logvol  /tmp  --vgname=vg-ibox --size=1024      --name=tmp  --fstype=ext4
 logvol  swap  --vgname=vg-ibox --size=1024      --name=swap --fstype=swap
@@ -30,12 +27,11 @@ network --onboot yes --device eth0 --bootproto dhcp
 
 repo --name=centos.7.x86_64.os --baseurl=http://linuxsoft.cern.ch/centos/7/os/x86_64/
 repo --name=centos.7.x86_64.updates --baseurl=http://linuxsoft.cern.ch/centos/7/updates/x86_64/
-repo --name=centos.7.x86_64.epel --baseurl=http://mirror.switch.ch/ftp/mirror/epel/beta/7/x86_64/
+repo --name=centos.7.x86_64.epel --baseurl=http://mirror.switch.ch/ftp/mirror/epel/7/x86_64/
 repo --name=centos.7.x86_64.extras --baseurl=http://linuxsoft.cern.ch/centos/7/extras/x86_64/
 repo --name=puppet.x86_64.products --baseurl=http://yum.puppetlabs.com/el/7/products/x86_64/
 repo --name=puppet.x86_64.deps --baseurl=http://yum.puppetlabs.com/el/7/dependencies/x86_64/
-# TODO: enable once built
-#repo --name=centos.7.x86_64.glei --baseurl=http://yum.glei.ch/el7/x86_64/
+repo --name=centos.7.x86_64.glei --baseurl=http://yum.glei.ch/el7/x86_64/
 
 %packages
 irqbalance
@@ -117,6 +113,32 @@ chrony
 
 %end
 
+%pre
+
+disk=none
+for i in vda xvda sda; do
+  if [ -b /dev/$i ]; then
+    disk=$i
+  fi
+done
+
+if [ ! -b /dev/$disk ]; then
+ exec < /dev/tty3 > /dev/tty3
+ chvt 3
+ echo "ERROR: Drive device does not exist at /dev/$disk!"
+ sleep 5
+ halt -f
+fi
+
+
+cat >/tmp/kspre.cfg <<CFG
+clearpart --initlabel --all --drives=$disk
+ignoredisk --only-use=$disk
+part /boot --fstype ext4 --size=512 --ondrive=$disk
+part pv.01 --size=1 --grow --ondrive=$disk
+CFG
+
+%end
 
 %post
 cat <<-EOF >/etc/puppet/puppet.conf

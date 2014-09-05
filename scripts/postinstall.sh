@@ -10,7 +10,3 @@ rkhunter --propupdate
 sed -i "s/^Defaults    requiretty/#Defaults    requiretty/" /etc/sudoers
 # rsync to sync folders
 yum install rsync -y
-
-shutdown -r +2
-
-exit
