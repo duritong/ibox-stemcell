@@ -8,7 +8,7 @@ fi
 
 [ -d builds/qemu ] || mkdir -p builds/qemu
 tmpdir=$(mktemp -d packer_cache/ibox.XXXXX.img)
-name=$(basename $1 .qcow2)
+name=$(basename $1 .qcow2 | sed 's/packer-//')
 qemu-img convert -c -O qcow2 $1 $tmpdir/box.img
 pushd $tmpdir > /dev/null
 echo 'Vagrant.require_plugin "vagrant-libvirt"' > Vagrantfile
@@ -22,3 +22,4 @@ END
 tar czf ../../builds/qemu/${name}.box ./metadata.json  ./Vagrantfile box.img
 popd > /dev/null
 rm -rf $tmpdir
+rm -rf $(dirname $1)
