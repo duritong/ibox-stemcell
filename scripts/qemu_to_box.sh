@@ -14,9 +14,10 @@ pushd $tmpdir > /dev/null
 echo 'Vagrant.require_plugin "vagrant-libvirt"' > Vagrantfile
 cat > metadata.json << END
 {
-  "provider"     : "libvirt",
-  "format"       : "qcow2",
-  "virtual_size" : 8
+  "provider"      : "libvirt",
+  "format"        : "qcow2",
+  "virtual_size"  : 8,
+  "version"       : "1.$(date +%Y%m%d%H%M)"
 }
 END
 tar czf ../../builds/qemu/${name}.box ./metadata.json  ./Vagrantfile box.img
