@@ -90,7 +90,6 @@ puppet
 #centos-release-cr
 epel-release
 yum-plugin-priorities
-yum-presto
 deltarpm
 rkhunter
 tmux
