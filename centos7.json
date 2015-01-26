@@ -29,7 +29,7 @@
       "type": "qemu",
       "accelerator": "kvm",
       "qemuargs": [
-        [ "-m", "{{user `mem`}}m" ],
+        [ "-m", "{{user `mem`}}M" ],
         [ "-smp", "cpus={{user `vcpu`}}" ]
       ],
       "vm_name": "packer-{{user `vm_prefix`}}-{{user `os_name`}}-x86_64-qemu"
@@ -41,6 +41,7 @@
       "boot_wait": "5s",
       "disk_size": "{{user `disk_size`}}",
       "guest_additions_url": "http://download.virtualbox.org/virtualbox/{{.Version}}/VBoxGuestAdditions_{{.Version}}.iso",
+      "guest_additions_path": "/root/VBoxGuestAdditions.iso",
       "guest_os_type": "RedHat_64",
       "http_directory": "http",
       "iso_checksum": "{{user `iso_checksum`}}",
@@ -107,7 +108,16 @@
   "provisioners": [
     {
       "type": "shell",
+      "script": "scripts/vbox-additions.sh",
+      "only": ["virtualbox-iso"]
+    },
+    {
+      "type": "shell",
       "script": "scripts/postinstall.sh"
+    },
+    {
+      "type": "shell",
+      "script": "scripts/zerodisk.sh"
     }
   ]
 }

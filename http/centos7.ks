@@ -80,7 +80,6 @@ iptables-services
 -microcode_ctl
 -smartmontools
 
--NetworkManager
 -redhat-lsb-core
 -dracut-config-rescue
 
@@ -92,6 +91,7 @@ puppet
 epel-release
 yum-plugin-priorities
 yum-presto
+deltarpm
 rkhunter
 tmux
 screen
@@ -99,11 +99,6 @@ yum-cron
 shorewall
 bash-completion
 haveged
-# TODO: activate when built
-# monit
-# doubts whether we might actually need monit,
-# given that we now run systemd
-#ekeyd-egd-linux
 munin-node
 mc
 denyhosts
