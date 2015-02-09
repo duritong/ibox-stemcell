@@ -10,7 +10,7 @@ rootpw --iscrypted $6$wh9o61rw$P.wXncXtXF/W.7wt1ui8x/7fj0P9Zy3Yy8UmbBUZFPECh4wkP
 firewall --enabled --port=22:tcp
 authconfig --enableshadow --passalgo=sha512 --disablefingerprint
 timezone --utc Europe/Zurich
-services --disabled auditd,fcoe,ip6tables,iptables,iscsi,iscsid,lldpad,netfs,nfslock,rpcbind,rpcgssd,rpcidmapd,udev-post,lvm2-monitor,postfix,avahi-daemon,hal,kudzu,autofs,readahead,kdump
+services --disabled fcoe,ip6tables,iptables,iscsi,iscsid,lldpad,netfs,nfslock,rpcbind,rpcgssd,rpcidmapd,udev-post,lvm2-monitor,postfix,avahi-daemon,hal,kudzu,autofs,readahead,kdump
 # NOTE: we need the NM for vagrant deployments
 # NetworkManager
 bootloader --location=mbr
