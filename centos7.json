@@ -6,6 +6,7 @@
     "vm_prefix": "ibox",
     "iso_checksum": "df6dfdd25ebf443ca3375188d0b4b7f92f4153dc910b17bccc886bd54a7b7c86",
     "iso_url": "http://mirror.switch.ch/ftp/mirror/centos/7/isos/x86_64/CentOS-7.0-1406-x86_64-NetInstall.iso",
+    "headless": true,
     "mem": 1024,
     "vcpu": 1
   },
@@ -27,6 +28,7 @@
       "ssh_username": "root",
       "ssh_wait_timeout": "10000s",
       "type": "qemu",
+      "headless": "{{user `headless`}}",
       "accelerator": "kvm",
       "qemuargs": [
         [ "-m", "{{user `mem`}}M" ],
@@ -54,6 +56,7 @@
       "ssh_username": "root",
       "ssh_wait_timeout": "10000s",
       "type": "virtualbox-iso",
+      "headless": "{{user `headless`}}",
       "vboxmanage": [
         [
           "modifyvm",
@@ -90,6 +93,7 @@
       "ssh_wait_timeout": "10000s",
       "tools_upload_flavor": "linux",
       "type": "vmware-iso",
+      "headless": "{{user `headless`}}",
       "vm_name": "packer-{{user `vm_prefix`}}-{{user `os_name`}}-x86_64-vmware",
       "vmx_data": {
         "cpuid.coresPerSocket": "{{user `vcpu`}}",
