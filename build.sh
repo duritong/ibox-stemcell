@@ -5,6 +5,10 @@ if [ "$1" = 'all' ]; then
 else
   providers=$1
 fi
+if [ -z $providers ]; then
+  echo "Usage: $0 [all|qemu|virtualbox]"
+  exit 1
+fi
 templates="centos7"
 which packer.io 2>&1 > /dev/null
 if [ $? -gt 0 ]; then
