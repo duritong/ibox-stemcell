@@ -1,6 +1,10 @@
 #!/bin/bash
 
-providers="qemu virtualbox"
+if [ "$1" = 'all' ]; then
+  providers="qemu virtualbox"
+else
+  providers=$1
+fi
 templates="centos7"
 which packer.io 2>&1 > /dev/null
 if [ $? -gt 0 ]; then
