@@ -84,6 +84,7 @@ iptables-services
 
 
 puppet
+puppetlabs-release
 
 # packages that are used on all systems
 # TODO: integrate when released
