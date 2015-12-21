@@ -9,7 +9,9 @@ if [ -f /root/VBoxGuestAdditions*.iso ]; then
   mount -t iso9660 -o loop /root/VBoxGuestAdditions*.iso /mnt
 
   # Install the drivers
-  /mnt/VBoxLinuxAdditions.run
+  export KERN_DIR=/usr/src/kernels/`uname -r`
+  export MAKE='/usr/bin/gmake -i'
+  /mnt/VBoxLinuxAdditions.run || (echo "Failure while installing VBOX Additions" && exit 1)
   umount /mnt
   rm -f /root/VBoxGuestAdditions*.iso
 else

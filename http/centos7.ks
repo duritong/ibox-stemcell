@@ -2,7 +2,7 @@
 install
 reboot
 text
-url --url=http://linuxsoft.cern.ch/centos/7/os/x86_64/
+url --url=http://mirror.switch.ch/ftp/mirror/centos/7/os/x86_64/
 lang en_US.UTF-8
 keyboard sg-latin1
 # vagrant
@@ -24,10 +24,11 @@ logvol  /     --vgname=vg-ibox --size=1 --grow  --name=root --fstype=ext4
 
 network --onboot yes --device eth0 --bootproto dhcp
 
-repo --name=centos.7.x86_64.os --baseurl=http://linuxsoft.cern.ch/centos/7/os/x86_64/
-repo --name=centos.7.x86_64.updates --baseurl=http://linuxsoft.cern.ch/centos/7/updates/x86_64/
+repo --name=centos.7.x86_64.os --baseurl=http://mirror.switch.ch/ftp/mirror/centos/7/os/x86_64/
+repo --name=centos.7.x86_64.updates --baseurl=http://mirror.switch.ch/ftp/mirror/centos/7/updates/x86_64/
 repo --name=centos.7.x86_64.epel --baseurl=http://mirror.switch.ch/ftp/mirror/epel/7/x86_64/
-repo --name=centos.7.x86_64.extras --baseurl=http://linuxsoft.cern.ch/centos/7/extras/x86_64/
+repo --name=centos.7.x86_64.extras --baseurl=http://mirror.switch.ch/ftp/mirror/centos/7/extras/x86_64/
+repo --name=centos.7.x86_64.cr --baseurl=http://mirror.switch.ch/ftp/mirror/centos/7/cr/x86_64/
 repo --name=puppet.x86_64.products --baseurl=http://yum.puppetlabs.com/el/7/products/x86_64/
 repo --name=puppet.x86_64.deps --baseurl=http://yum.puppetlabs.com/el/7/dependencies/x86_64/
 repo --name=centos.7.x86_64.glei --baseurl=http://yum.glei.ch/el7/x86_64/
