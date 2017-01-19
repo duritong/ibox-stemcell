@@ -1,14 +1,14 @@
 {
   "variables": {
-    "disk_size": 8192,
+    "disk_size": "8192",
     "os_name": "centos7",
     "root_password": "vagrant",
     "vm_prefix": "ibox",
-    "iso_checksum": "9ed9ffb5d89ab8cca834afce354daa70a21dcb410f58287d6316259ff89758f5",
-    "iso_url": "http://mirror.switch.ch/ftp/mirror/centos/7/isos/x86_64/CentOS-7-x86_64-NetInstall-1511.iso",
-    "headless": true,
-    "mem": 1024,
-    "vcpu": 1
+    "iso_checksum": "f2f7367deb90a25822947660c71638333ca0eceeabecc2d631be6cd508c24494",
+    "iso_url": "http://mirror.switch.ch/ftp/mirror/centos/7/isos/x86_64/CentOS-7-x86_64-NetInstall-1611.iso",
+    "headless": "true",
+    "mem": "1024",
+    "vcpu": "1"
   },
   "builders": [
     {
